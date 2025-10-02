@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>给小猪的祝福</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF6B8B',
+                        secondary: '#FFD166',
+                        accent: '#06D6A0',
+                        dark: '#118AB2',
+                        gold: '#FFD700',
+                    },
+                    fontFamily: {
+                        elegant: ['"Montserrat"', 'sans-serif'],
+                        handwriting: ['"Dancing Script"', 'cursive'],
+                    },
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            }
+            .text-shadow-lg {
+                text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            }
+            .float {
+                animation: float 6s ease-in-out infinite;
+            }
+            .fade-in {
+                animation: fadeIn 1s ease forwards;
+                opacity: 0;
+            }
+            .memory-dot {
+                position: absolute;
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background: var(--color);
+                transform: translate(-50%, -50%);
+                opacity: 0;
+                animation: dotAppear 0.5s ease forwards;
+            }
+            .memory-line {
+                position: absolute;
+                height: 2px;
+                background: linear-gradient(90deg, var(--start-color), var(--end-color));
+                transform-origin: left center;
+                transform: scaleX(0);
+                animation: lineGrow 1s ease forwards;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes dotAppear {
+            from { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+
+        @keyframes lineGrow {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-pink-50 via-purple-50 to-blue-50 font-elegant text-gray-800">
+    <!-- 顶部装饰 -->
+    <div class="absolute top-0 left-0 w-full h-32 overflow-hidden z-0">
+        <div class="absolute top-0 left-1/4 w-20 h-20 bg-primary/20 rounded-full float" style="animation-delay: 0s;"></div>
+        <div class="absolute top-10 left-1/2 w-16 h-16 bg-secondary/20 rounded-full float" style="animation-delay: 1s;"></div>
+        <div class="absolute top-5 right-1/4 w-24 h-24 bg-accent/20 rounded-full float" style="animation-delay: 2s;"></div>
+    </div>
+
+    <!-- 主内容容器 -->
+    <div class="container mx-auto px-4 py-12 max-w-4xl relative z-10">
+        <!-- 标题区 -->
+        <div class="text-center mb-12">
+            <h1 class="text-[clamp(1.8rem,4vw,2.8rem)] font-handwriting text-primary font-bold text-shadow-lg fade-in" style="animation-delay: 0.3s;">
+                给小猪的十八岁祝福
+            </h1>
+            <div class="w-32 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mt-4 fade-in" style="animation-delay: 0.6s;"></div>
+        </div>
+
+        <!-- 图片背景+透明文字框容器 -->
+        <div class="relative rounded-2xl overflow-hidden shadow-2xl mb-12 fade-in" style="animation-delay: 0.9s; min-height: 500px;">
+            <!-- 背景图片（路径设置为images/祝福.png） -->
+            <div class="absolute inset-0 z-0">
+                <img src="images/祝福.png" alt="祝福背景图" class="w-full h-full object-cover">
+                <!-- 图片加载失败时的占位提示 -->
+                <div class="absolute inset-0 bg-gray-200 flex items-center justify-center text-gray-400" style="display: none;" id="imgFallback">
+                    背景图片将在这里显示
+                </div>
+            </div>
+
+            <!-- 透明文字框（覆盖在图片上） -->
+            <div class="relative z-10 p-6 md:p-10 bg-white/30 backdrop-blur-sm rounded-2xl m-4 md:m-8">
+                <!-- 时间线装饰 -->
+                <div class="relative mb-10 px-8">
+                    <div class="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/30 to-secondary/30 transform -translate-x-1/2"></div>
+                    <div class="memory-dot" style="--color: #FF6B8B; left: 50%; top: 0; animation-delay: 1.2s;"></div>
+                    <div class="memory-line" style="--start-color: #FF6B8B; --end-color: #FFD166; left: 50%; top: 3px; width: calc(50% - 16px); animation-delay: 1.5s;"></div>
+                </div>
+
+                <!-- 祝福文字内容 -->
+                <div class="relative">
+                    <!-- 装饰圆点 -->
+                    <div class="absolute -top-6 -left-6 w-12 h-12 bg-primary/20 rounded-full"></div>
+                    <div class="absolute -bottom-8 -right-8 w-16 h-16 bg-secondary/20 rounded-full"></div>
+                    
+                    <!-- 文字逐段渐显 -->
+                    <p class="text-lg md:text-xl leading-relaxed mb-6 text-gray-800 fade-in" style="animation-delay: 1.8s;">
+                        祝小猪的十八岁生日快乐，天天开心。
+                    </p>
+                    <p class="text-lg md:text-xl leading-relaxed mb-6 text-gray-800 fade-in" style="animation-delay: 2.3s;">
+                        我们从相识到现在不知不觉已经过去了1109天，过去日子在我脑海留下了深刻的回忆，总能在平日中不经意想起。
+                    </p>
+                    <p class="text-lg md:text-xl leading-relaxed mb-6 text-gray-800 fade-in" style="animation-delay: 2.8s;">
+                        还记得刚认识的美好憧憬，那时候的生活总能有彼此的位置，虽然故事最后没有完美的结局，但还是祝愿小猪能遇到心目中满分的那个人，做对今后每一个人生抉择。
+                    </p>
+                    <p class="text-lg md:text-xl leading-relaxed mb-6 text-gray-800 fade-in" style="animation-delay: 3.3s;">
+                        一起好好生活！！
+                    </p>
+                    
+                    <!-- 手写签名 -->
+                    <div class="text-right mt-10">
+                        <p class="font-handwriting text-2xl text-primary fade-in" style="animation-delay: 3.8s;">
+                            —— 小陈
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 漂浮爱心互动元素 -->
+        <div class="flex justify-center mb-16">
+            <div class="w-16 h-16 md:w-20 md:h-20 relative float">
+                <span class="text-4xl md:text-5xl text-primary">🐷</span>
+            </div>
+        </div>
+
+        <!-- 返回按钮 -->
+        <div class="text-center">
+            <a href="main.html" class="inline-block bg-dark hover:bg-dark/90 text-white font-medium py-3 px-8 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+                <i class="fa fa-arrow-left mr-2"></i>返回首页
+            </a>
+        </div>
+    </div>
+
+    <!-- 底部装饰 -->
+    <div class="absolute bottom-0 left-0 w-full h-32 overflow-hidden z-0">
+        <div class="absolute bottom-0 left-1/3 w-24 h-24 bg-accent/20 rounded-full float" style="animation-delay: 0.5s;"></div>
+        <div class="absolute bottom-10 right-1/3 w-20 h-20 bg-dark/20 rounded-full float" style="animation-delay: 1.5s;"></div>
+    </div>
+
+    <script>
+        // 图片加载失败时显示占位提示
+        document.addEventListener('DOMContentLoaded', () => {
+            const bgImg = document.querySelector('.absolute.inset-0 img');
+            const fallback = document.getElementById('imgFallback');
+            
+            bgImg.addEventListener('error', () => {
+                fallback.style.display = 'flex';
+            });
+
+            // 滚动动画监听
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.relative.z-10:not(.fade-in)').forEach(el => {
+                observer.observe(el);
+            });
+
+            // 随机漂浮装饰
+            const createDecor = () => {
+                const decor = document.createElement('div');
+                const size = Math.random() * 8 + 4;
+                const colors = ['#FF6B8B', '#FFD166', '#06D6A0', '#118AB2'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                decor.style.cssText = `
+                    position: fixed;
+                    width: ${size}px;
+                    height: ${size}px;
+                    background: ${color};
+                    border-radius: 50%;
+                    top: -10%;
+                    left: ${Math.random() * 100}%;
+                    opacity: 0.6;
+                    pointer-events: none;
+                    z-index: 0;
+                    animation: fall ${Math.random() * 15 + 10}s linear forwards;
+                `;
+                
+                document.body.appendChild(decor);
+                setTimeout(() => decor.remove(), 25000);
+            };
+
+            setInterval(createDecor, 3000);
+            for (let i = 0; i < 3; i++) createDecor();
+        });
+
+        // 下落动画样式
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fall {
+                0% { top: -10%; transform: rotate(0deg); }
+                100% { top: 110%; transform: rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
